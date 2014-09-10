@@ -37,7 +37,9 @@
     "spinjs": "~2.0.1",
     "sass-bootstrap": "~3.0.0",
     "add-to-homescreen": "~3.0.7",
-    "screenfull": "~1.2.1"
+    "screenfull": "~1.2.1",
+    "leaflet.draw": "~0.2.3",
+    "bootstrap-glyphicons": "https://github.com/cleberar38/bootstrap-glyphicons.git"
   },
   "overrides": {
     "bootstrap3-typeahead": {
@@ -74,6 +76,20 @@
         "src/leaflet.usermarker.js",
         "src/leaflet.usermarker.css",
         "src/img/bluedot.png"
+      ]
+    },
+    "bootstrap-glyphicons": {
+      "main": [
+        "css/bootstrap.icon-large.min.css",
+        "glyphicons.png"
+      ]
+    },
+    "leaflet.draw": {
+      "main": [
+        "dist/leaflet.draw.js",
+        "dist/leaflet.draw.css",
+        "dist/images/spritesheet-2x.png",
+        "dist/images/spritesheet.png"
       ]
     },
     "Leaflet.label": {
