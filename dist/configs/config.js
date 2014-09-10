@@ -627,11 +627,14 @@ var config = {
 				  {
 				      init: "L.Control.FullScreen",
 				  	  options: {position: 'topright'}
+				  },
+				  {
+				      init: "L.Control.DrawSmap",
+				  	  options: {}
+				  },
+				  {
+				      init: "L.Control.DrawWFST",
+				  	  options: {}
 				  }
-				  // ,
-				  // {
-				  //     init: "L.Control.DrawSmap",
-				  // 	  options: {}
-				  // }
 	  ]
 };
