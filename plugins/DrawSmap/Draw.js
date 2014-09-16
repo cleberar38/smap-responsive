@@ -35,6 +35,11 @@ L.Control.DrawSmap = L.Control.extend({
             	addToPopover: true,
             	iconCss: "icon-large icon-remove",
             	displayName: "Remove"
+            },
+            save: {
+				addToPopover: true,
+				iconCss: "icon-large icon-hdd",
+				displayName: "Save"            
             }
         }
     },
@@ -192,6 +197,11 @@ L.Control.DrawSmap = L.Control.extend({
         self.setTexts();
 
         smap.map.on('draw:created', function (e) {
+        
+        	self._lastlayerCreated = e.layer;
+        		
+        	this.addLayer(self._lastlayerCreated);
+        
             var type = e.layerType,
             layer = e.layer;
             
@@ -276,25 +286,39 @@ L.Control.DrawSmap = L.Control.extend({
                     $toolbtn.prop("disabled",true);
                 }
                 break;
+            case "Save":
+                break;  
+              
             default:
                 return;
         }
+        if($toolbtn[0].title.toUpperCase() === "SAVE"){
+	        
+	        $toolbtn.on("click", function(e){
+	        	
+	        	window.wfst_ctrl.drawnMarker.addLayer(self._lastlayerCreated,{});
 
-        $toolbtn.on("click", function(e){
-            if( t.enabled() == true ){
-                t.disable();
-                self.currentTool = {};
-                self.delModeOn = false; 
-            }
-            else{
-                self.currentTool.type == "remove" ? self.delModeOn = false : "";
-                $.isEmptyObject(self.currentTool) == true ? self.currentTool = t : self.currentTool.disable();
-                t.enable();
-                t.type == "remove" ? self.delModeOn = true : "";
-                self.currentTool = t;
-            }
-            
-        });
+	        	//We make sure that the layer is saved in the DB.
+	        	L.extend(self._lastlayerCreated,{feature:{_wfstSaved: true}});
+	        });
+	                
+        }else {
+	        $toolbtn.on("click", function(e){
+	            if( t.enabled() == true ){
+	                t.disable();
+	                self.currentTool = {};
+	                self.delModeOn = false; 
+	            }
+	            else{
+	                self.currentTool.type == "remove" ? self.delModeOn = false : "";
+	                $.isEmptyObject(self.currentTool) == true ? self.currentTool = t : self.currentTool.disable();
+	                t.enable();
+	                t.type == "remove" ? self.delModeOn = true : "";
+	                self.currentTool = t;
+	            }
+	        });
+        }
+        
         $toolbtn.find("span").addClass(obj.iconCss);
         return $toolbtn;
     },

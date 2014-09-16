@@ -39,7 +39,8 @@
     "add-to-homescreen": "~3.0.7",
     "screenfull": "~1.2.1",
     "leaflet.draw": "~0.2.3",
-    "bootstrap-glyphicons": "https://github.com/cleberar38/bootstrap-glyphicons.git"
+    "bootstrap-glyphicons": "https://github.com/cleberar38/bootstrap-glyphicons.git",
+    "leaflet.wfs-t": "https://github.com/cleberar38/leaflet.wfs-t.git"
   },
   "overrides": {
     "bootstrap3-typeahead": {
@@ -90,6 +91,12 @@
         "dist/leaflet.draw.css",
         "dist/images/spritesheet-2x.png",
         "dist/images/spritesheet.png"
+      ]
+    },
+    "leaflet.wfs-t": {
+      "main": [
+        "js/leaflet.gml.js",
+        "js/leaflet.wfst.js"
       ]
     },
     "Leaflet.label": {

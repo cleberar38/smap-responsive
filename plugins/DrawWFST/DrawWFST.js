@@ -11,7 +11,8 @@ L.Control.DrawWFST = L.Control.extend({
             
         }
     },
-
+    
+    
     _setLang: function(langCode) {
         langCode = langCode || smap.config.langCode;
         if (this._lang) {
@@ -31,10 +32,37 @@ L.Control.DrawWFST = L.Control.extend({
         L.DomEvent.disableClickPropagation(self._container);
 
         self.$container = $(self._container);
-        
-        
+		
+		wfst_ctrl = {};
+		
+		self = this;
+		
+		this.initWFSTControl(map);
         
         return self._container;
+    },
+    
+    initWFSTControl: function(map) {
+    	// Initialize the WFST layers 
+//	    this.wfst_ctrl.drawnPolyline = L.wfst(null,{
+	    //Required
+//	      url : 'http://193.17.67.229:80/geoserver/hborg/ows',
+//	      featureNS : 'hborg',
+//	      featureType : 'wfst_smap_resp',
+//	      primaryKeyField: 'id',
+//	      geomField: 'geom'
+//	        
+//	    }).addTo(map);
+
+		wfst_ctrl.drawnMarker = L.wfst(null,{
+		    //Required
+		    url : 'http://geoserver.smap.se:80/geoserver/hbgws/wfs',
+		    featureNS : 'hbgws',
+		    featureType : 'wfst_smap_resp',
+		    primaryKeyField: 'id',
+		    geomField: 'geom'
+		    
+		}).addTo(map);
     },
 
     activate: function() {},
